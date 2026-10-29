@@ -8,6 +8,7 @@ dir="${XDG_STATE_HOME:-$HOME/.local/state}/claude-handoff"
 mkdir -p "$dir"
 note="$dir/$(pwd | tr / -).md"
 
-claude -p "/handoff $note" --continue --permission-mode acceptEdits --add-dir "$dir" </dev/null
+claude -p "/handoff $note" --continue --permission-mode acceptEdits --add-dir "$dir" </dev/null \
+  || echo "handoff skipped (no session to hand off)" >&2
 cswap switch "$@"
 exec claude
