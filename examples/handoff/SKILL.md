@@ -9,9 +9,10 @@ disable-model-invocation: true
 Thinking from one Claude organization cannot be reused after `cswap switch`, so
 write down what the next session needs to know.
 
-1. Get the target file: `echo ~/.claude/handoff/$(pwd | tr / -).md`
-2. `mkdir -p ~/.claude/handoff`, then write that file (overwrite it) with these
-   sections, short and concrete:
+1. Target file: the path given as the argument (`$ARGUMENTS`) if any. Otherwise
+   run `echo ${XDG_STATE_HOME:-~/.local/state}/claude-handoff/$(pwd | tr / -).md`.
+2. Write that file (overwrite it; the Write tool creates the directory) with
+   these sections, short and concrete:
    - **Goal**: what we are trying to achieve
    - **Done**: what is finished, with file paths
    - **In progress / blocked**: where it stopped and why

@@ -4,6 +4,10 @@
 # Usage: switch-with-handoff.sh [cswap switch args...]
 set -euo pipefail
 
-claude -p "/handoff" --continue
+dir="${XDG_STATE_HOME:-$HOME/.local/state}/claude-handoff"
+mkdir -p "$dir"
+note="$dir/$(pwd | tr / -).md"
+
+claude -p "/handoff $note" --continue --permission-mode acceptEdits --add-dir "$dir" </dev/null
 cswap switch "$@"
 exec claude

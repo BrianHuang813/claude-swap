@@ -6,7 +6,7 @@ set -euo pipefail
 cwd=$(jq -r '.cwd // empty')
 [ -n "$cwd" ] || exit 0
 
-note="$HOME/.claude/handoff/$(printf '%s' "$cwd" | tr / -).md"
+note="${XDG_STATE_HOME:-$HOME/.local/state}/claude-handoff/$(printf '%s' "$cwd" | tr / -).md"
 [ -f "$note" ] || exit 0
 
 # Ignore stale notes (older than 24h) so an old handoff never leaks in.

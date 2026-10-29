@@ -20,5 +20,5 @@ Requires `jq`.
 3. Run `/handoff`, then `cswap switch`, then start `claude` in the same directory.
    Or run `switch-with-handoff.sh` to do all three.
 
-Notes are stored per directory in `~/.claude/handoff/`, used once (renamed to
+Notes are stored per directory in `${XDG_STATE_HOME:-~/.local/state}/claude-handoff/`, used once (renamed to
 `.used`), and ignored after 24 hours.
